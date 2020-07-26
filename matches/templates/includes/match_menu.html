@@ -1,0 +1,15 @@
+
+<ul class="pagination pagination-sm mt-0">
+                    <li class="{% if current_menu_name == 'Procurar Partida' %}active{% else %}{% endif %}">
+                        <a href="{% url 'find_matches' %}">Procurar Partida</a>
+                    </li>
+                    <li class="{% if current_menu_name == 'Criar Partida' %}active{% else %}{% endif %}">
+                        <a href="{% url 'match_creation' %}">Criar Partida</a>
+                    </li>
+                    <li class="{% if current_menu_name == 'Minhas Partidas' %}active{% else %}{% endif %}">
+                        <a href="{% url 'current_matches' %}">Minhas Partidas</a>
+                    </li>
+                    <li class="{% if current_menu_name == 'Historico' %}active{% else %}{% endif %}">
+                        <a href="{% url 'match_history' %}">Histórico</a>
+                    </li>
+                </ul>

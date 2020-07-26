@@ -1,0 +1,53 @@
+
+
+<!-- Registration Form -->
+    <div id="nav-registration" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Cadastro</h4>
+                    {% if msg != none %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Erro(s)!</strong>
+                        <ul>
+                            {% for item in msg %}
+                            <li>
+                                {{ item }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="modal-body">
+
+                    <form action=" " method="POST"> {% csrf_token %}
+                        <div>
+                            <p>Usuário:</p>
+                            <div class="youplay-input">
+                                <a> {{ signup_form.username }} </a>
+                            </div>
+
+                            <p>Email:</p>
+                            <div class="youplay-input">
+                                <a> {{ signup_form.email }} </a>
+                            </div>
+
+                            <p>Senha:</p>
+                            <div class="youplay-input">
+                                <a> {{ signup_form.password1 }} </a>
+                            </div>
+                            <p>Confirme Senha:</p>
+                            <div class="youplay-input">
+                                <a> {{ signup_form.password2 }} </a>
+                            </div>
+                            <button class="btn ml-3" name="submit">Cadastrar Usuário</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Registration Form -->

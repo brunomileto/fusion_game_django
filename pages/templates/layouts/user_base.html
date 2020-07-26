@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+<!-- Header -->
+{% include 'includes/header.html' %}
+<!-- /Header -->
+
+<body>
+
+
+<!-- Preloader -->
+{% include 'includes/loading.html' %}
+<!-- /Preloader -->
+
+<!-- Navbar -->
+{% include 'includes/navbar.html' %}
+<!-- /Navbar -->
+
+    <div class="content-wrap">
+
+
+
+
+<!--
+    Banner
+
+    Additional classes:
+        .small
+        .xsmall
+        .big
+        .full
+-->
+<section class="youplay-banner banner-top youplay-banner-parallax small">
+        {% include 'includes/user_main_banner.html' %}
+
+    <div class="info">
+        <div>
+            <div class="container youplay-user">
+                <a href="/media/profile_picture/images.png" class="angled-img image-popup">
+                    <div class="img">
+                        <img src="/media/profile_picture/images.png" alt="">
+                    </div>
+                    <i class="fa fa-search-plus icon"></i>
+                </a>
+
+                <div class="user-data">
+                    <h2>{{request.user}}</h2>
+                    <div class="activity">
+                        <div>
+                            <div class="num">69</div>
+                            <div class="title">Posts</div>
+                        </div>
+                        <div>
+                            <div class="num">12</div>
+                            <div class="title">Games</div>
+                        </div>
+                        <div>
+                            <div class="num">689</div>
+                            <div class="title">Followers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-20">
+                <a href="#" class="btn btn-sm btn-default ml-0">Criar Partida</a>
+                <a href="#" class="btn btn-sm btn-default">Private Message</a>
+                <a data-toggle="modal" data-target="#nav-profile_edit" class="btn btn-sm btn-default">Editar Informações Perfil</a>
+                <a data-toggle="modal" data-target="#nav-profile_image_edit" class="btn btn-sm btn-default">Editar Imagem Perfil</a>
+<!--                <a href="#" class="no-fade" data-toggle="modal" data-target="#nav-registration">Register</a>-->
+            </div>
+        </div>
+    </div>
+
+    <div class="youplay-user-navigation">
+        <div class="container">
+            <ul>
+<!--                <li class="{% if current_nav_name == 'Historico' %}active{% else %} {% endif %}"><a href="{% url 'match_history' %}">Histórico de Partidas</a></li>-->
+                <li class="{% if current_nav_name == 'Partidas' %}active{% else %} {% endif %}" ><a href="{% url 'find_matches' %}">Partidas <span class="badge">6</span></a></li>
+                <li class="{% if current_nav_name == 'Carteira' %}active{% else %} {% endif %}"><a href="{% url 'user_wallet' %}">Carteira</a></li>
+                <li class="{% if current_nav_name == 'Perfil' %}active{% else %} {% endif %}"><a href="{% url 'user_profile' %}">Perfil</a></li>
+<!--                <li class="{% if current_nav_name == 'Configuracoes' %}active{% else %} {% endif %}" ><a href="{% url 'settings' %}">Configurações</a></li>-->
+<!--                <li class="{% if current_nav_name == 'Forums' %}active{% else %} {% endif %}" ><a href="#">Forums</a></li>-->
+
+            </ul>
+        </div>
+    </div>
+
+</section>
+
+<!-- /Banner -->
+
+
+
+
+{% block content %}
+
+
+
+{% endblock content %}
+    
+<!-- Search Block -->
+{% include 'includes/search_block.html' %}
+<!-- /Search Block -->
+{% include 'includes/footer.html' %}
+
+<!-- Profile Image Edit-->
+{% include 'includes/profile_image_edit.html' %}
+<!-- /Profile Image Edit -->
+
+<!-- Profile Image Edit-->
+{% include 'includes/profile_edit.html' %}
+<!-- /Profile Image Edit -->
+
+<!-- START: Scripts -->
+{% include 'includes/scripts.html' %}
+<!-- END: Scripts -->
+
+
+    </div>
+</body>
+</html>

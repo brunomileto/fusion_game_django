@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<!--
+    Name: Youplay - Game Template based on Bootstrap
+    Version: 3.3.0
+    Author: nK
+    Website: https://nkdev.info/
+    Purchase: https://themeforest.net/item/youplay-game-template-based-on-bootstrap/11306207?ref=_nK
+    Support: https://nk.ticksy.com/
+    License: You must have a valid license purchased only from ThemeForest (the above link) in order to legally use the theme for your project.
+    Copyright 2018.
+-->
+<html>
+
+
+<!-- Header -->
+{% include 'includes/header.html' %}
+<!-- /Header -->
+
+<body>
+    
+<!-- Preloader -->
+{% include 'includes/loading.html' %}
+<!-- /Preloader -->
+
+<!-- Navbar -->
+{% include 'includes/navbar.html' %}
+<!-- /Navbar -->
+
+<!-- Registration Form -->
+{% include 'includes/register.html' %}
+<!-- /Registration Form -->
+
+{% block content %}
+
+{% endblock content %}
+
+    
+<!-- Search Block -->
+{% include 'includes/search_block.html' %}
+<!-- /Search Block -->
+{% include 'includes/footer.html' %}
+
+
+    
+<!-- START: Scripts -->
+{% include 'includes/scripts.html' %}
+<!-- END: Scripts -->
+
+
+    
+</body>
+</html>

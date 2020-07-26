@@ -1,0 +1,104 @@
+{% extends 'layouts/user_base.html' %}
+
+{% block content %}
+
+    <div class="container youplay-content">
+
+        <div class="row">
+
+            <div class="col-md-9">
+
+                {% include 'includes/profile_edit_menu.html' %}
+
+                <form id="form-profile-data" action="" method="post">  {% csrf_token %}
+                    <h3>Dados Pessoais:</h3>
+                    <div class="form-horizontal mt-30 mb-40">
+                        {% if request.user.first_name == none or request.user.first_name == '' %}
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"  for="id_first_name">Nome</label>
+                            <div class="col-sm-10">
+                                <div class="youplay-input">
+                                    <p>{{edit_user_form.first_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if request.user.last_name == none or request.user.last_name == '' %}
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_last_name">Sobrenome:</label>
+                            <div class="col-sm-10">
+                                <div class="youplay-input">
+                                    <p>{{edit_user_form.last_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_phone">Whatsapp:</label>
+                            <div class="col-sm-10">
+                                <div class="youplay-input">
+                                    <p>{{edit_profile_form.phone}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% if request.user.profile.birth_date == none or request.user.profile.birth_date == '' %}
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_birth_date">Data de Nascimento:</label>
+                            <div class="col-sm-10">
+                                <div class="youplay-input">
+                                    <p>{{edit_profile_form.birth_date}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    <h3>Dados de Network:</h3>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_xbox_gametag">Xbox Live ID:</label>
+                            <div class="col-sm-10">
+                                <div class="youplay-input">
+                                    <p>{{edit_profile_form.xbox_gametag}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_psn_gametag">PSN ID:</label>
+                            <div class="col-sm-10">
+                                <div class="youplay-input">
+                                    <p>{{edit_profile_form.psn_gametag}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Salvar Dados</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- Right Side -->
+            <div class="col-md-3">
+                <div class="side-block">
+    <h4 class="block-title">About</h4>
+    <div class="block-content">
+        Ecce dabo Pinkman Isai OK? Sicut locutus est tibi, et datus est, et hic sine Semper consequat volumus ... et ille in urbe ista licet? Et infernus, ubi tu non Virginiae ornare vel ipsum. Ut enim Albuquerque et ille eum iure hic, et ego ducam te ad iustitiam.
+    </div>
+</div>
+<div class="side-block">
+    <h4 class="block-title">Location</h4>
+    <div class="block-content pt-5">
+        <div class="responsive-embed responsive-embed-16x9">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423284.59051352815!2d-118.41173249999999!3d34.0204989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2z0JvQvtGBLdCQ0L3QtNC20LXQu9C10YEsINCa0LDQu9C40YTQvtGA0L3QuNGPLCDQodCo0JA!5e0!3m2!1sru!2sru!4v1430158354122" width="600" height="450"></iframe>
+        </div>
+    </div>
+</div>
+            </div>
+            <!-- Right Side -->
+
+        </div>
+
+    </div>
+
+{% endblock %}

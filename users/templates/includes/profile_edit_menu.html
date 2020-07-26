@@ -1,0 +1,12 @@
+
+<ul class="pagination pagination-sm mt-0">
+                    <li class="{% if current_menu_name == 'Dados Perfil' %}active{% else %}{% endif %}">
+                        <a href="{% url 'settings' %}">Dados Perfil</a>
+                    </li>
+                    <li class="{% if current_menu_name == 'Segurança' %}active{% else %}{% endif %}">
+                        <a href="{% url 'security_settings' %}">Segurança</a>
+                    </li>
+                    <li class="{% if current_menu_name == 'Dados Privados' %}active{% else %}{% endif %}">
+                        <a href="{% url 'settings' %}">Dados Privados</a>
+                    </li>
+                </ul>

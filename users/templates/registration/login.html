@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+    <div class="content-wrap">
+        
+            <!--
+    Banner
+
+    Additional classes:
+        .small
+        .xsmall
+        .big
+        .full
+-->
+<section class="youplay-banner banner-top youplay-banner-parallax full">
+    
+        {% include 'includes/main_banner.html' %}
+    
+
+    <div class="info">
+        <div>
+            <div class="container">
+                
+                
+                
+                    
+    <div class="youplay-login">
+        <div class="youplay-form text-center">
+            <h1>Login</h1>
+            <form action="" method="post">{% csrf_token %}
+                <div class="youplay-input">
+                    <input type="text" id="username" value="" name="username">
+                </div>
+                <div class="youplay-input">
+                    <input type="password" name="password" id="password" value="">
+                </div>
+                <button class="btn btn-default db">Login</button>
+            </form>
+        </div>
+    </div>
+
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Banner -->
+
+        
+    </div>
+
+  {% endblock content %}
+
+

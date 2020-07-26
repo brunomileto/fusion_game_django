@@ -1,0 +1,122 @@
+    <!-- /Profile Image Form -->
+    <!-- Modal -->
+<!--    <link href="css/normalize.css" rel="stylesheet" type="text/css"/>-->
+<!--<link href="css/datepicker.css" rel="stylesheet" type="text/css"/>-->
+{% load widget_tweaks %}
+
+<div class="modal fade" id="nav-profile_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+            <div style="margin: 9% auto;" class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h2 class="modal-title" id="myModalLabel">Alterar Dados</h2>
+                </div>
+                <div class="modal-body">
+
+                    <form id="form-alterardados" action="" method="post">  {% csrf_token %}
+                        <div class="row m-t-30 justify-content-center">
+                            <div class="col-12 col-lg-6">
+                                <div class="form-uptitle">
+                                    <p class="form-tutorials-3">Nome</p>
+                                    {% if request.user.first_name == '' or request.user.first_name == none %}
+                                    <div class="youplay-input">
+
+                                            <p>{{edit_user_form.first_name}}</p>
+                                         </div>
+                                        {% else %}
+                                        <div class="alert" role="alert">
+                                            {{request.user.first_name}}
+                                        </div>
+                                        {% endif %}
+
+                                </div>
+                                <div class="form-uptitle m-t-30">
+                                    <p class="form-tutorials-3">E-mail</p>
+                                    <div class="youplay-input">
+                                        <input type="text" name="email" value="{{request.user.email}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-uptitle m-t-30">
+                                    <p class="form-tutorials-3">Telefone</p>
+                                    <div class="youplay-input">
+                                        <p>{{edit_profile_form.phone}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-uptitle m-t-30">
+                                    <p class="form-tutorials-3">Xbox ID</p>
+                                    <div class="youplay-input">
+                                        <p>{{edit_profile_form.xbox_gametag}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="form-uptitle m-t-30-md">
+                                    <p class="form-tutorials-3">Sobrenome</p>
+                                    {% if request.user.last_name == '' or request.user.last_name == none %}
+                                    <div class="youplay-input">
+
+                                            <p>{{edit_user_form.last_name}}</p>
+                                         </div>
+                                        {% else %}
+                                        <div class="alert" role="alert">
+                                            {{request.user.last_name}}
+                                        </div>
+                                        {% endif %}
+                                </div>
+                                <div class="form-uptitle m-t-30">
+                                    <p class="form-tutorials-3">Data de Nascimento</p>
+                                    <div class="youplay-input">
+                                        {% if request.user.profile.birth_date == '' or request.user.profile.birth_date == none %}
+                                             <p>  {{ edit_profile_form.birth_date}}</p>
+                                        {% else %}
+                                             <input type="text" name="birth_date" value="{{request.user.profile.birth_date}}" disabled>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-uptitle m-t-30">
+                                    <p class="form-tutorials-3">CPF</p>
+                                    <div class="youplay-input">
+                                        {% if request.user.profile.cpf == '' or request.user.profile.cpf == none %}
+                                            <p>{{edit_profile_form.cpf}}</p>
+                                        {% else %}
+                                             <input type="text" name="cpf" value="{{request.user.profile.cpf}}" disabled>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-uptitle m-t-30">
+                                    <p class="form-tutorials-3">PSN ID</p>
+                                    <div class="youplay-input">
+                                        <p>{{edit_profile_form.psn_gametag}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-right m-t-30">
+                                <button type="submit" class="btn btn-sm btn-success" name="button">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modals -->
+
+
+<script>
+    $('#datepicker').datepicker();
+</script>
+
+
+<script>
+  $(function() {
+    $( "#datepicker2" ).datepicker({
+         dateFormat: "yy-mm-dd",
+         changeMonth: true,
+         changeYear: true,
+         yearRange:'1920:2020',
+         defaultDate:"{{request.user.profile.birth_date}}"
+    });
+  });
+</script>
