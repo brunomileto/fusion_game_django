@@ -5,17 +5,23 @@ from django.db import models
 from datetime import date
 from users.models import User
 
+
 # Create your models here.
+class BaseModel(models.Model):
+    objects = models.Manager()
+
+    class Meta:
+        abstract = True
 
 
-class GameCategory(models.Model):
+class GameCategory(BaseModel):
     game_category = models.CharField(max_length=240, blank=False, null=False, unique=True)
 
     def __str__(self):
         return self.game_category
 
 
-class GameSubCategory(models.Model):
+class GameSubCategory(BaseModel):
     game_subcategory = models.CharField(max_length=240, blank=False, null=False, unique=True)
     game_category = models.ForeignKey(GameCategory, on_delete=models.CASCADE, blank=False, null=False)
 
@@ -23,7 +29,7 @@ class GameSubCategory(models.Model):
         return self.game_subcategory
 
 
-class GameSerie(models.Model):
+class GameSerie(BaseModel):
     game_series = models.CharField(max_length=240, blank=False, null=False, unique=True)
     game_subcategory = models.ForeignKey(GameSubCategory, on_delete=models.CASCADE, blank=False, null=False)
 
@@ -31,14 +37,14 @@ class GameSerie(models.Model):
         return self.game_series
 
 
-class Platform(models.Model):
+class Platform(BaseModel):
     platform_name = models.CharField(max_length=240, blank=False, null=False, unique=True)
 
     def __str__(self):
         return self.platform_name
 
 
-class Game(models.Model):
+class Game(BaseModel):
     game_name = models.CharField(max_length=240, blank=False, null=False, unique=True)
     game_serie = models.ForeignKey(GameSerie, on_delete=models.CASCADE, blank=False, null=False)
     platform = models.ManyToManyField(Platform)
@@ -47,7 +53,7 @@ class Game(models.Model):
         return self.game_name.__str__()
 
 
-class GameRule(models.Model):
+class GameRule(BaseModel):
     rule_01 = models.CharField(max_length=240, blank=True, null=True, default=None)
     rule_02 = models.CharField(max_length=240, blank=True, null=True, default=None)
     rule_03 = models.CharField(max_length=240, blank=True, null=True, default=None)
@@ -57,7 +63,7 @@ class GameRule(models.Model):
         return self.game_name.__str__()
 
 
-class GameMode(models.Model):
+class GameMode(BaseModel):
     game_mode_01 = models.CharField(max_length=240, blank=True, null=True, default=None)
     game_mode_02 = models.CharField(max_length=240, blank=True, null=True, default=None)
     game_mode_03 = models.CharField(max_length=240, blank=True, null=True, default=None)
@@ -68,16 +74,35 @@ class GameMode(models.Model):
         return self.game_name.__str__()
 
 
-class Match(models.Model):
+class Match(BaseModel):
     WIN = 'WIN'
     DRAW = 'DRAW'
     LOSE = 'LOSE'
+    RULE_01 = 'RULE_01'
+    RULE_02 = 'RULE_02'
+    RULE_03 = 'RULE_03'
+    GAME_MODE_01 = 'ULTIMATE'
+    GAME_MODE_02 = 'ELENCOS ONLINE'
+
     RESULTS_CHOICE = [
         (None, 'Informe o resultado da partida: '),
         (WIN, 'Ganhei'),
         (DRAW, 'Empatamos'),
         (LOSE, 'Perdi'),
     ]
+    GAME_RULES_CHOICES = [
+        (None, 'Selecione alguma regra: '),
+        (RULE_01, 'RULE_01'),
+        (RULE_02, 'RULE_02'),
+        (RULE_03, 'RULE_03'),
+    ]
+
+    GAME_MODE_CHOICES = [
+        (None, 'Selecione um modo de jogo: '),
+        (GAME_MODE_01, 'Ultimate Team'),
+        (GAME_MODE_02, 'Elencos Online'),
+    ]
+
     game_name = models.ForeignKey(Game, on_delete=models.CASCADE, blank=False, null=False)
     match_creation_date = models.DateField(blank=False, null=False, default=date.today)
     match_end_date = models.DateField(blank=True, null=True, default=None)
@@ -98,3 +123,5 @@ class Match(models.Model):
     match_opp_main_statistic = models.CharField(max_length=120, blank=True, null=True, default='')
     match_creator = models.ManyToManyField(User, related_name='match_creator', blank=False)
     opponent = models.ManyToManyField(User, related_name='opponent', blank=False, default=None)
+    game_rules = models.CharField(max_length=24, blank=True, null=False, default='', choices=GAME_RULES_CHOICES)
+    game_mode = models.CharField(max_length=24, blank=True, null=False, default='', choices=GAME_MODE_CHOICES)
