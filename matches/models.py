@@ -83,6 +83,20 @@ class Match(BaseModel):
     RULE_03 = 'RULE_03'
     GAME_MODE_01 = 'ULTIMATE'
     GAME_MODE_02 = 'ELENCOS ONLINE'
+    BET_01 = 10
+    BET_02 = 15
+    BET_03 = 20
+    BET_04 = 40
+    BET_05 = 50
+
+    BET_VALUE_CHOICES = [
+        (None, 'Informe o valor da aposta: '),
+        (BET_01, 'R$ 10,00'),
+        (BET_02, 'R$ 15,00'),
+        (BET_03, 'R$ 20,00'),
+        (BET_04, 'R$ 40,00'),
+        (BET_05, 'R$ 50,00'),
+    ]
 
     RESULTS_CHOICE = [
         (None, 'Informe o resultado da partida: '),
@@ -108,8 +122,7 @@ class Match(BaseModel):
     match_end_date = models.DateField(blank=True, null=True, default=None)
     match_status = models.CharField(max_length=120, blank=False, null=False, default='created')
     match_comment = models.CharField(max_length=480, blank=True, null=False)
-    bet_value = models.DecimalField(max_digits=4, decimal_places=2, blank=False, null=False,
-                                    validators=[MinValueValidator(Decimal('10.00'))])
+    bet_value = models.IntegerField(blank=False, null=False, choices=BET_VALUE_CHOICES)
     mc_result = models.CharField(max_length=24, blank=True, null=False, default='', choices=RESULTS_CHOICE)
     mc_main_statistic = models.CharField(max_length=120, blank=True, null=True, default='')
     mc_opp_main_statistic = models.CharField(max_length=120, blank=True, null=True, default='')
